@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "eb0a5f354a78aa08",
+    "type": "split",
+    "children": [
+      {
+        "id": "ad676750fe37b598",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e32bda2bc699b8d6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sistemas Operativos/Resúmenes/Segundo Parcial/Preguntas Integradoras - SO (2do Parcial).md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Preguntas Integradoras - SO (2do Parcial)"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e741265b7b3e17c6",
+    "type": "split",
+    "children": [
+      {
+        "id": "8e76d9ecbd0367e5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c42221f8cbe6c3ee",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "35ebd11be97f9fa7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "438647ae22418ab5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cd0341acd87262ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "37d729319ddf5010",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "88af118d69224434",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Sistemas Operativos/🖥️ Sistemas Operativos.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes de 🖥️ Sistemas Operativos"
+            }
+          },
+          {
+            "id": "5caf6cc54c575096",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Sistemas Operativos/🖥️ Sistemas Operativos.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes de 🖥️ Sistemas Operativos"
+            }
+          },
+          {
+            "id": "55d78d2194745e9a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "5652bb867fa5b10d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "fd78678e14bdf048",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Sistemas Operativos/🖥️ Sistemas Operativos.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema de 🖥️ Sistemas Operativos"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false
+    }
+  },
+  "active": "e32bda2bc699b8d6",
+  "lastOpenFiles": [
+    "Sistemas Operativos/Resúmenes/Segundo Parcial/U6 - Administración de Memoria Central.md",
+    "Sistemas Operativos/Resúmenes/Primer Parcial/U1 - Introducción a los Sistemas Operativos.md",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/Hoja de Resumen - 2do Parcial.md",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/Parciales de Practica.md",
+    "AnalisisSistemas/Resumen Parcial/Arquitectura de Software.md",
+    "♟️ Patrones de Diseño.md",
+    "AnalisisSistemas/Resumen Parcial/Análisis de Sistemas - Índice.md",
+    "TestingYQA/Resumen Completo - Testing y QA.md",
+    "TestingYQA/Preguntas Integradoras - Testing y QA (2do Parcial).md",
+    "Sistemas Operativos/Transcripciones/Transcripciones_SO_Arzubi.pdf",
+    "Sistemas Operativos/Resúmenes/Sistemas Operativos — Índice.md",
+    "Sistemas Operativos/Resúmenes/Segundo Parcial/U7 - Memoria Virtual.md",
+    "Sistemas Operativos/Resúmenes/Segundo Parcial/Preguntas Integradoras - SO (2do Parcial).md",
+    "Sistemas Operativos/MaterialCursada/Abrazo mortal.pdf",
+    "AnalisisSistemas/Resumen Parcial/Preguntas Integradoras - Análisis de Sistemas.md",
+    "AnalisisSistemas/Resumen Parcial/Patrones de Diseño.md",
+    "AnalisisSistemas/Resumen Parcial/Diagramas de Secuencia.md",
+    "AnalisisSistemas/Resumen Parcial/Diagramas de Clases.md",
+    "AnalisisSistemas/Resumen Parcial/Diagramas de Actividades.md",
+    "AnalisisSistemas/Resumen Parcial/Checklist de Errores Comunes.md",
+    "AnalisisSistemas/Resumen Parcial/Casos de Uso.md",
+    "Devops/Resúmenes/06 - Terraform (Infraestructura como Código).md",
+    "Devops/Resúmenes/05 - Monitoreo y Observabilidad.md",
+    "Devops/Resúmenes/04 - Deployment.md",
+    "Devops/Resúmenes/Resumen 2do Parcial - DevOps.md",
+    "Devops/Resúmenes/Preguntas Integradoras - DevOps (2do Parcial).md",
+    "Devops/Resúmenes/00 - Índice DevOps.md.tmp.49493.9f5091dfa065",
+    "Devops/Resúmenes/Resumen 2do Parcial - DevOps.md.tmp.49493.629ea14794f0",
+    "Devops/Resúmenes/07 - Seguridad (OWASP Top 10).md",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/Parciales de Practica.md.tmp.10231.84148ae55fec",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/07 - Ejercicios de repaso resueltos.md",
+    "ProbabilidadYEstadisitca/MaterialCursada/PRUEBA DE HIPÓTESIS PARA 1 población '26.pdf",
+    "ProbabilidadYEstadisitca/MaterialCursada/Pruebas datos categóricos '26(1).pdf",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/00 - GUÍA 2do Parcial.md.tmp.10231.236107bf087b",
+    "ProbabilidadYEstadisitca/MaterialCursada/Ejercicio de repaso 2do parcial '25-2.pdf",
+    "ProbabilidadYEstadisitca/Resumen 2do Parcial/Hoja de Resumen - 2do Parcial.md.tmp.10231.a3cb38b3133f"
+  ]
+}
