@@ -11,7 +11,7 @@ aliases:
 # 🧩 Preguntas Integradoras — Sistemas Operativos (2do Parcial)
 
 > [!tip] Cómo usar esta página
-> Las respuestas están **plegadas**. Leé la pregunta, intentá responderla vos, y recién después abrí el callout (click en el ▸ a la izquierda de "Ver respuesta") para verificar. Pensada para repaso/active recall del parcial. Entra U6 a U9.
+> Las respuestas están **plegadas**. Leé la pregunta, intentá responderla vos, y recién después abrí el callout (click en el ▸ a la izquierda de "Ver respuesta") para verificar. Pensada para repaso/active recall del parcial. Entra **U6 a U10** (5 unidades).
 
 ## 🧠 Unidad 6 — Administración de Memoria Central
 
@@ -361,6 +361,123 @@ aliases:
 > En el **archivo de acceso llave** el **campo clave del registro coincide directamente con la dirección** en disco. Es el método de acceso **más rápido de todos**: no hay cálculo (como en hashing) ni búsqueda en índice, el campo clave es la dirección.
 > 
 > Limitación: es muy difícil de implementar en la práctica, porque el rango posible de valores del campo clave puede ser enorme y habría que reservar espacio en disco para toda esa cantidad de direcciones posibles, dejando mucho espacio vacío (ej. si el campo clave es el DNI, habría que reservar espacio para cada número de DNI posible). Conviene saber que existe: en archivos pequeños con campo clave que pueda hacerse coincidir con direcciones (ej. un sistema embebido con poca memoria), es el método más rápido posible.
+
+**12.** Describa los cinco tipos de estructura de directorios como evolución histórica. ¿Cuáles permiten compartir archivos y cuál puede producir loops en la búsqueda?
+> [!success]- Ver respuesta
+> Los directorios (hoy "carpetas") evolucionaron así:
+> 
+> - **Un solo nivel (raíz)**: todos los archivos cuelgan del directorio raíz, uno al lado del otro. No permite **ninguna organización**.
+> - **Dos niveles**: un nivel debajo de la raíz (ej. una rama por usuario, o por tipo de archivo). Permite organización básica.
+> - **N niveles (de árbol)**: árbol invertido (raíz arriba, hojas abajo); se ramifica sin límite → gran capacidad de organización (es el de Windows). **No permite compartir**: cada usuario accede solo a su rama.
+> - **Grafo acíclico**: un mismo archivo/carpeta puede alcanzarse por **dos ramas distintas** → **permite compartir**. Es **acíclico** porque al recorrer el SO no puede subir por otra rama (vuelve hacia atrás), así que **no hay loops**.
+> - **Grafo general**: también **permite compartir**, pero al recorrer el sistema **sí puede subir** por otra rama → **puede producir loops** en la búsqueda; hay que tomar medidas para evitarlos.
+> 
+> Resumen: **comparten** el grafo acíclico y el grafo general; **el único con riesgo de loop** es el grafo general. El SO busca un archivo **recorriendo el árbol rama por rama**.
+
+**13.** Compare las dos formas de asegurar la consistencia en modo multiusuario. Use los ejemplos del profe.
+> [!success]- Ver respuesta
+> **Consistencia** = que no se corrompan los datos cuando dos o más usuarios acceden a la misma información a la vez. Dos formas:
+> 
+> - **Consistencia de sesión**: el que **abre primero** el archivo tiene la autoridad para modificarlo; los demás **pueden verlo pero no modificarlo**, y **no ven los cambios** hasta que el primero **guarde y cierre**. Ejemplo: un archivo de Word compartido (uno edita, los otros solo miran). La prioridad la tiene quien inicia la sesión.
+> - **Consistencia de archivos compartidos inmutables**: varios usuarios acceden y **cualquiera puede modificar**; las modificaciones se **ven inmediatamente**, y la restricción se reduce **al registro o campo** que se está modificando (grano más fino, no el archivo completo). Ejemplo: una cuenta bancaria recíproca: los dos titulares pueden **mirar** la cuenta a la vez, pero solo **uno saca el dinero** por vez.
+
+**14.** Explique los tres métodos de asignación de espacio a los archivos en disco. ¿Cómo resuelve cada uno el crecimiento del archivo?
+> [!success]- Ver respuesta
+> El disco se administra por **bloques** del mismo tamaño. Tres métodos:
+> 
+> - **Contigua**: los bloques del archivo van uno al lado del otro; el directorio guarda **bloque inicial + longitud**. Crecimiento: si no hay espacio libre al lado, hay que **trasladar el archivo completo** a otro lugar donde quepa → su principal inconveniente.
+> - **Enlazada**: usa **punteros** (como el archivo secuencial enlazado, pero sobre los bloques de espacio). El directorio guarda el bloque inicial y cada bloque apunta al siguiente; recorrido secuencial. Crecimiento: se le da **cualquier bloque libre** y se ajustan los punteros, sin trasladar el archivo.
+> - **Indizada (indexada)**: hay un **bloque de índices** (i-nodos) que contiene la lista de todos los bloques del archivo; el directorio apunta a él. Crecimiento: cuando el bloque de índice se llena, se **divide en dos** (y se vuelve a dividir si sigue creciendo), formando un árbol → crecimiento sin restricciones.
+
+**15.** ¿Cuáles son las cuatro formas en que el SO registra el espacio libre del disco? **(Práctica)** Un mapa de bits ocupa 1.024 bloques de 8 KB cada uno: ¿cuántos bloques tiene el disco y cuál es su tamaño en GB?
+> [!success]- Ver respuesta
+> Cuatro formas de registrar el espacio libre:
+> 
+> - **Vector o mapa de bits**: los primeros bloques guardan **un bit por cada bloque** del disco (0 = libre, 1 = ocupado). Necesita tantos bits como bloques tenga el disco.
+> - **Lista enlazada**: lista enlazada de bloques libres, recorrida **secuencialmente**. Económica pero poco eficiente.
+> - **Agrupamiento**: los primeros bloques guardan **directamente todas las direcciones** de los bloques libres.
+> - **Recuento**: guarda la **dirección de un bloque + cuántos bloques libres hay a continuación** (ej. "bloque 10 → 5 libres", "bloque 30 → 20").
+> 
+> **Cálculo (cada bit del mapa = un bloque del disco):**
+> 
+> - Bits del mapa = 1.024 bloques × 8 KB × 1.024 (bytes/KB) × 8 (bits/byte) = **67.108.864 bits** → el disco tiene **67.108.864 bloques** (≈ 67 millones).
+> - Tamaño = 67.108.864 × 8 KB = 536.870.912 KB ÷ 1.024 = 524.288 MB ÷ 1.024 = **512 GB**.
+
+## 🌐 Unidad 10 — Introducción a los Sistemas Distribuidos
+
+**1.** ¿Qué es un sistema distribuido y cómo se comunican sus equipos? ¿En qué se diferencia de un cluster y del multiprocesamiento fuertemente acoplado?
+> [!success]- Ver respuesta
+> Un **sistema distribuido** es un sistema formado por **equipos completos ubicados geográficamente en distintos lugares** que trabajan en conjunto, porque tienen **objetivos comunes** y **comparten recursos**. No son equipos sueltos: están vinculados. Ejemplo: una empresa con equipos en distintas provincias o barrios. La **comunicación** se hace mediante **llamadas a procesos remotos** (paso de mensajes).
+> 
+> Diferencias clave (todo gira en torno a "¿están distribuidos geográficamente?"):
+> 
+> - **Multiprocesamiento fuertemente acoplado**: varios procesadores **dentro de un mismo equipo**. NO es distribuido.
+> - **Cluster**: conjunto de equipos reunidos **en un mismo lugar** con una red muy veloz. NO es distribuido.
+> - **Sistema distribuido** (MIMD **débilmente acoplado**): equipos **distribuidos geográficamente** e interconectados. Este sí lo es.
+
+**2.** ¿Qué es la ISO y qué carácter tienen sus estándares y protocolos? ¿Qué pasa si una empresa decide no usarlos?
+> [!success]- Ver respuesta
+> La **ISO (International Standard Organization)** es una organización internacional que **establece estándares y protocolos** para muchos temas (desarrollo de software, programación, comunicaciones, etc.).
+> 
+> Sus estándares **no son de uso obligatorio** para nadie: sirven para que quienes **quieran comunicarse "hablen el mismo idioma"**. Una empresa puede usar **sus propios protocolos** (por ejemplo, para mantener reserva/secreto) sin problema; el único inconveniente es que **no va a poder interactuar con otros sistemas**.
+
+**3.** Describa la idea conceptual del modelo OSI y enumere sus 7 capas en orden. ¿Cómo agrupa Internet las capas?
+> [!success]- Ver respuesta
+> El **OSI (Open System Interconnection)**, desarrollado por la ISO para la interconexión de **sistemas abiertos**, organiza la comunicación en **7 capas**. La idea conceptual es **dividir un problema complejo** en partes hasta llegar a problemas simples (analogía del profe: organizar un congreso de informática desgranándolo en tareas chicas). Al enviar de A a B, el mensaje (ej. una fotografía) se va dividiendo al **bajar** por las capas hasta el nivel físico (solo ceros y unos); en B se hace el **camino inverso** subiendo por las capas hasta reconstruirlo.
+> 
+> Las 7 capas (de abajo hacia arriba): **Física → Enlace → Red → Transporte → Sesión → Presentación → Aplicación**.
+> 
+> **Internet** considera de la capa de **red** hacia arriba: red (IP), transporte (TCP), y agrupa **sesión + presentación + aplicación** bajo "aplicación".
+
+**4.** En la capa física, compare la transmisión analógica y la digital. ¿Por qué la digital puede reconstruirse exactamente igual en el destino?
+> [!success]- Ver respuesta
+> La capa física determina la **intensidad de la señal**; la transmisión puede ser analógica o digital (ambas válidas).
+> 
+> - **Analógica**: onda continua con **infinitos puntos** (el teorema de Shannon los reduce). Al recorrer, la señal **disminuye y recibe ruido**; los **regeneradores** la levantan tomando el punto medio de lo que llega, por lo que en el destino **puede no quedar exactamente igual** a la original.
+> - **Digital**: usa la **onda cuadrada** con **2 estados** (0 y 1). Al regenerar, solo hay que decidir **si es 1 o 0** → la reconstrucción es **exactamente igual**. Esa es su ventaja, y es con lo que trabaja nuestro equipo de computación.
+
+**5.** Explique los tres tipos de enlace de red (conmutación de circuito, de paquetes y ATM). ¿Cuáles requieren ordenar lo recibido en destino?
+> [!success]- Ver respuesta
+> - **Conmutación de circuito** (ej. telefonía fija): se establece un **circuito fijo** entre A y B (por donde haya menos tráfico) que se **mantiene durante toda la comunicación**. Al cortar y rellamar puede ser otro circuito. No hay que ordenar nada.
+> - **Conmutación de paquetes**: el mensaje se **divide en paquetes** (con cabecera de destinatario/remitente). Los paquetes **viajan por distintos caminos** según el tráfico y **llegan en cualquier orden** → en destino **hay que ordenarlos**.
+> - **ATM (Método de Transmisión Asincrónica)**: combina los dos: usa **celdas** (paquetes mucho más chicos) pero **establece un circuito** y lo mantiene durante la comunicación → las celdas **llegan ordenadas** (no hay que ordenarlas).
+> 
+> Solo la **conmutación de paquetes** obliga a ordenar en destino.
+
+**6.** ¿De qué se encargan las capas de red, transporte, sesión, presentación y aplicación? Dé el protocolo o concepto de Internet asociado a cada una donde corresponda.
+> [!success]- Ver respuesta
+> - **Red**: identifica **unívocamente** a cada usuario para que no se pierda el destinatario. En Internet (redes de redes): el **IP** (único en el mundo); siglas `.com`, `.ar`, `.gov`, `.edu`.
+> - **Transporte**: define el **tamaño de los paquetes** y lo normaliza/protocoliza. En Internet: **TCP**.
+> - **Sesión**: si la comunicación es **Full Duplex o Half Duplex**.
+> - **Presentación**: **codificación** de los caracteres → **ASCII** (8 bits, el más conocido) o **EBCDIC**.
+> - **Aplicación**: servicios al usuario → **SMTP, FTP, TELNET** (mails, mensajes, etc.).
+
+**7.** Explique la taxonomía de Flynn (las 4 combinaciones) con un ejemplo de cada una.
+> [!success]- Ver respuesta
+> Flynn combina **flujo de instrucciones × flujo de datos** (cada uno único o múltiple):
+> 
+> - **SISD** (instrucción simple, dato simple): computadora con **un solo procesador**. Ejecuta una instrucción sobre un dato.
+> - **SIMD** (instrucción simple, múltiples datos): **procesadores vectoriales**. Ej.: sumar 1 a cada posición de un vector (una instrucción, muchos datos).
+> - **MISD** (múltiples instrucciones, un dato): **paralelismo redundante** (ver pregunta 8).
+> - **MIMD** (múltiples instrucciones, múltiples datos): **multiprocesamiento**. Es la estructura de los sistemas distribuidos. Puede ser **fuertemente acoplado** (un equipo, NO distribuido) o **débilmente acoplado** (sistemas distribuidos).
+
+**8.** ¿Qué es el paralelismo redundante (MISD), para qué se usa y cómo funciona? Relaciónelo con el hecho de que el software no se puede probar al 100%.
+> [!success]- Ver respuesta
+> El **paralelismo redundante (MISD)** se usa en aplicaciones **muy exigentes en tiempo que no pueden fallar** (ej. el sistema de un avión de combate, donde "se va la vida del piloto" y se trabaja en nanosegundos).
+> 
+> Como el **software nunca se puede probar al 100%** (sería necesario cargar todos los datos posibles y recorrer todos los caminos internos, y los números son infinitos → conceptualmente imposible; las pruebas de caja negra/blanca nunca son exhaustivas), se recurre a la redundancia: se le da el **mismo algoritmo a 3 programadores** que lo desarrollan y prueban por separado. Luego se ejecutan los **3 programas en 3 procesadores** y se **comparan los resultados**, eligiendo el de la **mayoría** (si dos dan 5 y uno da 4, vale 5). Así se evita que un error de software provoque una catástrofe.
+
+**9.** ¿Qué es el middleware, dónde se ubica y qué problema resuelve?
+> [!success]- Ver respuesta
+> El **middleware** es **software**: una **interfaz de programación y protocolos estándares** que se ubica **entre la plataforma y las aplicaciones** (la **plataforma** = hardware del equipo + sistema operativo).
+> 
+> Resuelve el problema de la **portabilidad entre plataformas**: antes había que desarrollar **una versión de la aplicación por cada plataforma**. Con el middleware, la aplicación se desarrolla **una sola vez** sobre él, y como el middleware funciona sobre varias plataformas, esa misma aplicación puede usarse en todas (el middleware hace la **compatibilidad**).
+
+**10.** ¿Qué es un cluster, cuál es su objetivo y por qué NO es un sistema distribuido? Use la analogía del profe.
+> [!success]- Ver respuesta
+> Un **cluster** ("racimo") es un **conjunto de equipos reunidos en un mismo lugar**, conectados por una **red de comunicaciones extremadamente veloz**, con un **software que lo administra**. Su objetivo es **potenciar determinadas capacidades** (almacenamiento, procesamiento, impresión, etc.).
+> 
+> **No es un sistema distribuido** porque los equipos están **todos en el mismo lugar**, no distribuidos geográficamente. Analogía del profe: es como un sistema **RAID** (conjunto de discos + software que los administra), pero con equipos completos en lugar de discos.
 
 ---
 🔙 Volver al índice: [[Sistemas Operativos — Índice]]

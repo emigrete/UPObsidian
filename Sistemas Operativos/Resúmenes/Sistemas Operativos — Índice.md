@@ -36,15 +36,14 @@ Comprende las **unidades 6 a 10**.
 | [[U6 - Administración de Memoria Central\|U6]] | Administración de memoria central | 6-7 |
 | [[U7 - Memoria Virtual\|U7]] | Memoria virtual y algoritmos de reemplazo de páginas | 8-10 |
 | [[U8 - Administración de Dispositivos de Entrada-Salida\|U8]] | Administración de dispositivos de entrada-salida | 10-11 |
-| [[U9 - Administración de Archivos\|U9]] | Administración de archivos | 11 |
-| [[U10 - Introducción a los Sistemas Distribuidos\|U10]] | Introducción a los sistemas distribuidos | *(falta)* |
+| [[U9 - Administración de Archivos\|U9]] | Administración de archivos | 11-12 |
+| [[U10 - Introducción a los Sistemas Distribuidos\|U10]] | Introducción a los sistemas distribuidos | 12 |
 
-> [!warning] Lo que todavía falta
-> - **U10 — Introducción a los sistemas distribuidos**: es la **clase que falta** (en la clase 11 el profe dice que la ve "la clase que viene"). Todavía no hay transcripción → la nota se hará cuando esté.
-> - **U9 — Administración de archivos** quedó **incompleta**: el profe cortó la clase 11 para el segundo parcialito y dijo que le faltaba ver **directorios** y **consistencia**, que pasan a la clase 12. Esa parte se completará con la clase que falta.
+> [!success] Segundo parcial completo
+> Con la **Clase 12** se cerró el temario: se completó **U9** (faltaban **directorios**, **consistencia** multiusuario, **asignación de espacio** y **gestión del espacio libre**) y se sumó **U10 — Introducción a los sistemas distribuidos**. El parcial entra **de la U6 a la U10** (5 unidades), con teoría y práctica; el profe confirmó que "todo lo que dijo en la clase de OSI lo puede preguntar".
 
 > [!question] Autoevaluación
-> [[Preguntas Integradoras - SO (2do Parcial)]] — preguntas estilo parcial con respuestas plegadas (U6–U9).
+> [[Preguntas Integradoras - SO (2do Parcial)]] — preguntas estilo parcial con respuestas plegadas (**U6–U10**).
 
 > [!note] Sobre la numeración de clases
 > La transcripción tiene **11 clases**, pero la planificación lista 16 semanas: las semanas de parcial y parcialito no tienen clase grabada, por eso el número de clase de la transcripción no coincide 1:1 con el de la planificación. El mapeo real clase→unidad es el de las tablas de arriba.

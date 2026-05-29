@@ -9,7 +9,7 @@ tags:
   - unidad-9
 parcial: "Segundo Parcial"
 unidad: 9
-clases: "Clase 11"
+clases: "Clases 11-12"
 fuente: "Transcripciones Prof. Arzubi"
 ---
 
@@ -246,10 +246,172 @@ El ==campo clave== del registro **coincide directamente con la dirección** en d
 
 ---
 
-## Estado de la unidad al final de la clase
+## Estructura de directorios
 
-> [!warning] Unidad incompleta — continúa en la clase siguiente
-> El profe explicitamente cortó la clase antes de terminar la unidad porque tenían que hacer el segundo parcialito. Al final de la clase dijo: "Me falta un poquito. La clase que viene terminamos de ver esta unidad. Me queda ver algo de **directorios** y **consistencia**." Esos temas (estructura de directorios y consistencia del sistema de archivos) **no fueron cubiertos en la Clase 11** y serán parte de la Clase 12 junto con la Unidad 10.
+El profe aclara que **directorios** es el término formal de lo que hoy se llama **carpetas** (y subcarpetas, sub-subcarpetas, etc.). Los directorios pueden ser de distinto tipo, y los presenta como una **evolución histórica**: cada tipo aparece para resolver las limitaciones del anterior.
+
+> [!note] Cómo busca el sistema operativo
+> Cuando uno pide "buscar" un archivo o una carpeta, el SO **recorre el árbol de directorios rama por rama** hasta encontrar lo que se busca. Cómo recorre ese árbol (y si puede o no volver hacia arriba) es lo que distingue a los últimos dos tipos.
+
+### 1. Directorio de un solo nivel (raíz)
+
+El primero de la historia. Hay un único directorio, el del **nivel raíz**, y todos los archivos cuelgan directamente de él, uno al lado del otro.
+
+**Limitación:** no permite **ninguna organización**: no se pueden agrupar archivos por tipo, por usuario, ni por nada. Solo están todos juntos bajo la raíz.
+
+> [!note] Nivel de abstracción
+> El profe aclara que internamente el SO no lo guarda exactamente así (uno abajo del otro), pero conceptualmente está bien verlo de esa manera porque es lo que representa.
+
+### 2. Directorio de dos niveles
+
+Aparece un segundo nivel debajo de la raíz. Permite empezar a **organizar**: por ejemplo, una rama por cada usuario (usuario 1, usuario 2, usuario 3), o un mismo usuario separando sus archivos por tipo.
+
+> [!example] Ejemplo del profe
+> Es como armar **una carpeta y dentro una subcarpeta**: ya se puede agrupar, aunque la capacidad de organización todavía es limitada (solo dos niveles).
+
+### 3. Directorio de N niveles (de árbol)
+
+Es el que usan los sistemas actuales (Windows). Se pueden abrir y ramificar todos los directorios y subdirectorios que se quiera, dando una **capacidad de organización muy grande**.
+
+> [!note] Por qué "árbol invertido"
+> Es un **árbol invertido**: la raíz está arriba y las hojas van hacia abajo. El profe comenta que el nombre "árbol" no es el más adecuado por eso, pero hay que tener claro que está invertido.
+
+**Limitación:** **no permite compartir** archivos o carpetas. Cada usuario solo tiene acceso a las carpetas que están en **su propia rama**.
+
+### 4. Directorio de grafo acíclico
+
+Ya no es un árbol, sino un **grafo**: un mismo archivo o carpeta puede ser alcanzado por **dos ramas distintas**.
+
+**Novedad:** esto permite **compartir** archivos o carpetas. Si una rama es de un usuario y la otra de otro, ambos pueden acceder al mismo archivo o carpeta.
+
+> [!note] Por qué "acíclico"
+> Cuando el SO recorre el grafo buscando, **no puede subir** por la otra rama: llega al archivo compartido, vuelve hacia atrás y sigue recorriendo por el otro lado. Como nunca sube por otra rama, **no se pueden producir loops**.
+
+### 5. Directorio de grafo general
+
+Es como el acíclico (también permite compartir), pero con una diferencia clave: al recorrer, el sistema **sí puede subir** por otra rama.
+
+> [!important] El profe recalca
+> El problema del grafo general es que poder volver por otra rama puede hacer que el sistema entre en un **loop** durante la búsqueda. Por eso, si se usa este tipo de directorio, **hay que tomar medidas para evitar que se produzcan loops**. El grafo acíclico no tiene este problema.
+
+**Resumen de qué permite cada tipo:**
+
+| Tipo de directorio | Organización | ¿Comparte? | ¿Riesgo de loop? |
+|---|---|---|---|
+| Un solo nivel (raíz) | Ninguna | No | No |
+| Dos niveles | Básica | No | No |
+| N niveles (árbol) | Muy grande | No | No |
+| Grafo acíclico | Muy grande | **Sí** | No |
+| Grafo general | Muy grande | **Sí** | **Sí** (hay que evitarlo) |
+
+---
+
+## Consistencia en modo multiusuario
+
+> [!note] Qué es la consistencia
+> **Consistencia** es que **no se corrompan los datos** guardados en un archivo, en particular cuando **dos o más usuarios acceden a la misma información** simultáneamente.
+
+Hay básicamente **dos formas** de asegurar la consistencia:
+
+### Consistencia de sesión
+
+El que **abre primero** el archivo es el que tiene la **autoridad para modificarlo**. Los demás que accedan **pueden verlo pero no modificarlo**, y **no ven los cambios** que hace el primero hasta que este **guarde y cierre** el archivo.
+
+> [!example] Ejemplo del profe
+> Un archivo de Word compartido: cuando uno lo está modificando, el otro lo puede ver pero no modificar. La prioridad la tiene **quien inicia la sesión**.
+
+### Consistencia de archivos compartidos inmutables
+
+Varios usuarios pueden acceder al mismo archivo y **cualquiera puede modificarlo**. Las modificaciones que hace uno son **vistas inmediatamente** por los demás. La restricción ya no es sobre el archivo completo, sino que se reduce **al registro (o campo) que se está modificando**: el control de acceso es de **grano mucho más fino**.
+
+> [!example] Ejemplo del profe
+> Una cuenta bancaria recíproca (de dos titulares): los dos pueden **mirar** la cuenta al mismo tiempo, pero solo **uno puede sacar el dinero** a la vez. El bloqueo es a nivel de registro/campo, no de todo el archivo.
+
+---
+
+## Métodos de asignación de espacio a los archivos en el disco
+
+Trata de **cómo hace el SO (el módulo que administra el disco) para asignarle espacio a los archivos**.
+
+> [!note] Todo se maneja por bloques
+> La memoria secundaria siempre se administra a nivel de **bloques**, todos del mismo tamaño. No se transfiere un registro suelto, sino un bloque (que incluye una cantidad de registros según el tamaño de bloque del disco). Esto es **independiente** de si hay paginación o no.
+
+Hay **tres formas** de administrar esos bloques:
+
+### 1. Asignación contigua
+
+Los bloques de un archivo se asignan **uno al lado del otro** (apegados). El directorio guarda el **bloque inicial** y la **longitud** (cantidad de bloques).
+
+> [!example] Ejemplo del profe
+> El archivo "cuenta" empieza en el bloque 0 con longitud 2 (ocupa los bloques 0 y 1); el archivo "correo" empieza en el bloque 3 con longitud 3 (bloques 3, 4, 5).
+
+**Problema (el crecimiento):** los archivos crecen, y puede no haber espacio libre al lado. Como la asignación tiene que seguir siendo contigua, hay que **trasladar el archivo completo** a otro lugar donde quepa con su nuevo tamaño. Es un inconveniente importante.
+
+### 2. Asignación enlazada
+
+Usa **punteros**, igual que el archivo secuencial enlazado, pero aplicado al **espacio (bloques)** que el sistema le da al archivo, no a los registros. El directorio guarda el **bloque inicial**, y cada bloque apunta al siguiente; hay que recorrerlos de forma **secuencial**.
+
+> [!example] Ejemplo del profe
+> El archivo "cuenta" empieza en el bloque 1, que apunta al 5, que apunta al 11… los bloques están vinculados por punteros.
+
+**Ventaja:** el archivo **puede crecer** sin trasladarlo. Si necesita otro bloque, se le da cualquier bloque libre y se ajustan los punteros (igual que el secuencial enlazado de registros).
+
+### 3. Asignación indizada (indexada)
+
+El archivo tiene un **bloque de índices** (son los famosos **i-nodos** / tablas de índice de bloques). El directorio apunta a ese bloque de índice, que contiene la **lista de todos los bloques que forman el archivo**.
+
+> [!example] Ejemplo del profe
+> El archivo "cuenta" tiene como bloque de índice el bloque 8; dentro del bloque 8 está la lista de los bloques que forman el archivo: 1, 6, 5, 11.
+
+**Crecimiento (muy sencillo):** si el bloque de índice se llena (no entran más números de bloque), se **divide en dos**, y la mitad de los datos va con un bloque de índice y la otra mitad con otro. Si sigue creciendo, se vuelve a dividir, formando una especie de **árbol** que crece lateralmente. Permite el **crecimiento sin restricciones**.
+
+---
+
+## Gestión del espacio libre en el disco
+
+Antes de asignar espacio (sección anterior), el SO necesita **saber cuáles son los bloques libres**. Hay **cuatro formas** de registrar el espacio libre:
+
+### 1. Vector o mapa de bits
+
+Los **primeros bloques del disco** se dedican a guardar un **bit por cada bloque** del disco: el bit vale **0 o 1** según ese bloque esté libre u ocupado. El mapa de bits tiene que tener **tantos bits como bloques** tiene el resto del disco.
+
+> [!note] Tamaño del mapa
+> El mapa puede ocupar 2, 4, 10, 50… bloques: depende del tamaño del disco (cuantos más bloques tenga el disco, más bits necesita el mapa para referenciarlos).
+
+### 2. Lista enlazada
+
+Una **lista enlazada de los bloques libres** que hay que recorrer **secuencialmente** para ir encontrándolos. Es muy económica, pero al ser un recorrido secuencial **no es muy eficiente**.
+
+### 3. Agrupamiento
+
+Los **primeros bloques** del disco guardan **directamente todas las direcciones de los bloques libres**. De ahí el sistema las analiza y resuelve cómo asignarlos.
+
+### 4. Recuento
+
+Se guarda la **dirección de un bloque** y **cuántos bloques libres hay a continuación**.
+
+> [!example] Ejemplo del profe
+> "Bloque 10 → 5" significa que a partir del bloque 10 hay 5 bloques libres; "bloque 30 → 20", "bloque 50 → 100", etc.
+
+---
+
+## Ejercicio resuelto: mapa de bits
+
+> [!question] Enunciado del profe
+> Un mapa de bits ocupa **1.024 bloques**. Cada bloque ocupa **8 KB**.
+> a) ¿Cuántos bloques tiene el disco?
+> b) ¿Cuál es el tamaño del disco en gigabytes?
+
+> [!success]- Ver resolución
+> **a) Cantidad de bloques del disco.** En el mapa de bits, **cada bit representa un bloque** del disco. Hay que calcular cuántos bits tiene el mapa:
+> - El mapa ocupa 1.024 bloques × 8 KB = 8.192 KB.
+> - Pasado a bits: 8.192 KB × 1.024 (bytes/KB) × 8 (bits/byte) = **67.108.864 bits**.
+> - Como cada bit referencia un bloque → el disco tiene **67.108.864 bloques** (≈ 67 millones).
+>
+> **b) Tamaño del disco en GB.** Se multiplica la cantidad de bloques por el tamaño de cada bloque y se pasa a GB (como dijo Aarón en clase: ×8 KB, ÷1.024 y ÷1.024):
+> - 67.108.864 bloques × 8 KB = 536.870.912 KB.
+> - ÷ 1.024 = 524.288 MB.
+> - ÷ 1.024 = **512 GB**.
 
 ---
 
