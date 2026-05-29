@@ -144,4 +144,5 @@ Siempre los mismos pasos (sirve para TODOS los prácticos 6 a 8):
 - [[05 - Formulario y errores típicos]]
 - [[06 - TODOS los ejercicios resueltos]] ⭐ — los ~52 ejercicios del parcial resueltos uno por uno
 - [[07 - Ejercicios de repaso resueltos]] 📝 — la ejercitación de repaso del parcial resuelta y explicada
+- [[08 - Parciales ejemplo resueltos (oficial)]] 🧪 — los **2 parciales ejemplo de la cátedra** resueltos paso a paso y verificados contra las respuestas oficiales
 - [[Preguntas Integradoras - Probabilidad (2do Parcial)]] ❓ — preguntas estilo parcial (teoría + aplicadas) con respuestas plegadas
