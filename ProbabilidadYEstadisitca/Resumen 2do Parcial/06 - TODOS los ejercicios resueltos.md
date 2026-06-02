@@ -26,6 +26,17 @@ tema: Ejercicios resueltos completos P6 a P9 (paso a paso)
 
 # 📘 PRÁCTICO 6 — Inferencia para una población
 
+> [!question]- Cómo leo un enunciado de este práctico (para decidir la prueba)
+> Acá **siempre hay UN solo grupo**. Las preguntas que me hago:
+> - **¿El dato es una media o una proporción?**
+>   - número que se promedia (tiempo, temperatura, velocidad…) → **media** → familia **t** (σ desconocido, $\nu=n-1$).
+>   - porcentaje / "X de cada N" / % de éxitos → **proporción** → familia **z** (cuenta a mano).
+> - **¿Me piden estimar o decidir?**
+>   - "estimar / IC / con confianza del X%" → **intervalo de confianza** (sin $H_0/H_1$).
+>   - "probar / supera / es menor / difiere de…" → **prueba de hipótesis**.
+> - **La cola sale del verbo:** "supera/aumenta" → `>` (derecha) · "es menor/baja" → `<` (izquierda) · "difiere de" → `≠` (bilateral, pv ×2).
+> - **Regla anti-trampa:** la hipótesis se arma con el **valor afirmado** del enunciado (ej. 0,62), nunca con el **valor muestral** ($\hat p$).
+
 ### Ej 1 — Estimadores puntuales (teoría)
 1. **Idea clave:** un **estimador** se calcula con la **muestra** (es variable aleatoria); un **parámetro** describe la **población** (es constante).
 2. **a)** Clasifico cada símbolo → son **estimadores puntuales**: $S^2$, $\bar{x}$, $\hat{p}$. ✅ ($\mu$ y $\sigma^2$ son **parámetros**, no estimadores).
@@ -147,6 +158,18 @@ tema: Ejercicios resueltos completos P6 a P9 (paso a paso)
 > [!tip] El primer paso SIEMPRE: ¿apareadas o independientes?
 > Mismo individuo medido 2 veces = **apareadas** · dos grupos distintos = **independientes** (en independientes, antes de la t corro **Levene** y **Shapiro** en jamovi).
 
+> [!question]- Cómo leo un enunciado de este práctico (para decidir la prueba)
+> Acá **siempre hay DOS grupos**. El orden de preguntas:
+> - **¿Medias o proporciones?**
+>   - comparo **promedios** de una variable cuantitativa → familia **t** de dos muestras.
+>   - comparo **dos porcentajes** → **z de diferencia de proporciones**.
+> - **Si es t → ¿apareadas o independientes? (LA decisión clave)**
+>   - **mismo** individuo medido dos veces (antes/después, pre-post, dos métodos sobre la misma unidad) → **APAREADAS**. Pista extra: el $n$ es **igual** en los dos momentos. Se trabaja con $d=\text{antes}-\text{después}$.
+>   - individuos **distintos** en cada grupo (sucursal A vs B, hombres vs mujeres, trabaja vs no trabaja) → **INDEPENDIENTES**.
+>   - ⚠️ **Trampa repetida:** "antes/después" pero con **$n$ distintos** (ej. 10 vs 12) → son grupos distintos → **independientes**, NO apareadas.
+> - **Solo en independientes** corro **Levene** primero: $pv>\alpha$ → Student · $pv<\alpha$ → **Welch**.
+> - **La cola sale del verbo:** "difieren" → `≠` bilateral · "A mejora/reduce/supera a B" → unilateral en la dirección que diga.
+
 ### Ej 1 — Autenticación (10 antes / 12 después, α=1%) · *t INDEPENDIENTES* ⚠️
 1. **Identifico (¡trampa!):** dice "antes/después", pero son **10 usuarios** antes y **12** después → **grupos distintos** (10 ≠ 12) → **muestras INDEPENDIENTES**, no apareadas.
 2. **jamovi:** dos columnas (valor + grupo) → **Pruebas t → Muestras Independientes** → tildo **Levene** y **Shapiro**. Normalidad pv=0,898 ✅ ; homogeneidad pv=0,323 ✅ → uso **Student**.
@@ -226,6 +249,14 @@ tema: Ejercicios resueltos completos P6 a P9 (paso a paso)
 > [!tip] Recordá antes de cada uno
 > Todo usa $\chi^2_m=\sum\dfrac{(o_i-e_i)^2}{e_i}$ y es **unilateral derecha** → $pv=P(\chi^2>\chi^2_m)$. **Bondad de ajuste:** $e_i=n\,p_i$, gl=c−1, jamovi *N Resultados*. **Indep./Homog.:** $e_{ij}=\dfrac{\text{fila}\cdot\text{col}}{n}$, gl=(f−1)(c−1), jamovi *Prueba de independencia χ²*.
 
+> [!question]- Cómo leo un enunciado de este práctico (cuál de los χ² es)
+> El disparador: **hay categorías y conteos** (no números que se promedian) → es χ². Después distingo **cuál**:
+> - **¿Comparo UNA variable contra proporciones dadas?** (históricas, uniforme, "¿sigue tal distribución?") → **BONDAD DE AJUSTE**. $e_i=n\cdot p_i$, $\nu=c-1$ (categorías − 1).
+> - **¿Cruzo DOS variables en una tabla y pregunto si se relacionan/dependen?** → **INDEPENDENCIA**. $\nu=(f-1)(c-1)$.
+> - **¿Una variable comparada entre VARIAS poblaciones/grupos** ("¿difiere según la línea/proveedor/rubro?")? → **HOMOGENEIDAD**. Misma operación y mismos gl que independencia.
+> - **Atajo mental:** una variable → bondad de ajuste ; dos variables o varios grupos en tabla → independencia/homogeneidad.
+> - **La cola NUNCA cambia:** χ² es **siempre unilateral derecha** (nunca ×2). $H_0$ siempre dice "no hay diferencia / son independientes / sigue la distribución".
+
 ### Ej 1 — Carreras clásicas (α=4%) · *BONDAD DE AJUSTE*
 1. **Identifico:** comparo una muestra contra **% históricos (35/48/17)** → **bondad de ajuste**.
 2. **a) Esperadas $e_i=n\cdot p_i$:** **1155 ; 1584 ; 561**.
@@ -273,6 +304,14 @@ tema: Ejercicios resueltos completos P6 a P9 (paso a paso)
 
 > [!tip] jamovi para todo el P9
 > Recta + r + r² + test de β: **Regresión → Regresión lineal** (y = Dependiente, x = Covariable). Dispersograma: **Exploración → Gráfico de dispersión**. El **p de la covariable** es el del test de β (bilateral): $t_m=b/S_b$, gl=n−2, $pv=2P(t>|t_m|)$.
+
+> [!question]- Cómo leo un enunciado de este práctico
+> El disparador: **dos variables CUANTITATIVAS relacionadas** ($x$ explica, $y$ se explica) y casi siempre una **recta** $\hat y=a+bx$. Lo que pueden pedir:
+> - **Interpretar coeficientes:** $a$ (ordenada) = valor de $y$ cuando $x=0$ → **ojo:** si $x=0$ está **fuera del rango** de los datos, NO tiene sentido práctico. $b$ (pendiente) = cuánto cambia $y$ por cada **+1** en $x$ (el signo dice si sube o baja).
+> - **¿Hay asociación lineal?** → se traduce a la **PH para la pendiente $\beta$**: $H_0:\beta=0$ (no hay) vs $H_1:\beta\ne0$ (sí, **bilateral**). Estadístico $t_m=b/S_b$, $\nu=n-2$.
+> - **% explicado** → es directamente $r^2$ (coeficiente de determinación).
+> - **Signo de la correlación:** $r$ tiene el **mismo signo que $b$**. Si la pendiente es negativa, $r=-\sqrt{r^2}$.
+> - **No extrapolar:** estimar $y$ solo es válido para valores de $x$ **dentro del rango** observado.
 
 ### Ej 1 — Errores vs horas (n=7)
 1. **a) Identifico variables:** **x = horas de codificación** (explica) ; **y = cantidad de errores** (se explica).

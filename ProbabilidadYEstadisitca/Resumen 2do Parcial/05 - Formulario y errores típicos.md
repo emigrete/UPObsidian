@@ -12,32 +12,41 @@ Volver a la [[00 - GUÍA 2do Parcial|guía principal]].
 
 ---
 
-## 📋 FÓRMULAS (todas en una hoja)
+## 📋 FÓRMULAS — ✅ en la hoja permitida vs ❌ a memorizar
 
-> [!note] Práctico 6 — Una población
-> **IC media (t):** $\quad \bar{x}\pm \underbrace{t_{(n-1;\,1-\frac{\alpha}{2})}\cdot\dfrac{s}{\sqrt n}}_{EM}$
->
-> **IC proporción (z):** $\quad \hat{p}\pm \underbrace{z_{(1-\frac{\alpha}{2})}\cdot\sqrt{\dfrac{\hat p(1-\hat p)}{n}}}_{EM}$ , con $\hat p=\dfrac{x}{n}$
->
-> **PH media:** $\quad t_m=\dfrac{\bar{x}-\mu_0}{s/\sqrt n}$ , gl $=n-1$
->
-> **PH proporción:** $\quad z_m=\dfrac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}$
+> [!important] Leé esto antes
+> La hoja oficial **solo trae lo de UNA población** (media y proporción, PH e IC). Todo lo de **dos grupos, χ² y regresión NO viene** → te lo tenés que saber de memoria (o resolverlo por jamovi). Marca de cada fórmula:
+> - ✅ = **está en la hoja permitida**, no la memorices.
+> - ❌ = **NO está**, memorizala (o salida por jamovi).
 
-> [!note] Práctico 7 — Dos poblaciones
-> - **t independientes:** primero Levene (varianzas) y Shapiro (normalidad). Si varianzas ≠ → Welch.
-> - **t apareadas:** definir $D=$ medida1 − medida2 ; $H_0:\mu_D=0$.
-> - **z diferencia de proporciones:** $H_0:p_1-p_2=0$.
+> [!note] Práctico 6 — Una población ✅ (TODO en la hoja)
+> ✅ **IC media (t):** $\quad \bar{x}\pm \underbrace{t_{(n-1;\,1-\frac{\alpha}{2})}\cdot\dfrac{s}{\sqrt n}}_{EM}$
+>
+> ✅ **IC proporción (z):** $\quad \hat{p}\pm \underbrace{z_{(1-\frac{\alpha}{2})}\cdot\sqrt{\dfrac{\hat p(1-\hat p)}{n}}}_{EM}$ , con $\hat p=\dfrac{x}{n}$
+>
+> ✅ **PH media:** $\quad t_m=\dfrac{\bar{x}-\mu_0}{s/\sqrt n}$ , gl $=n-1$
+>
+> ✅ **PH proporción:** $\quad z_m=\dfrac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}$
+>
+> 💡 De la amplitud: $EM=\dfrac{\text{amplitud}}{2}$ , y el IC va centrado ($l_i=\text{centro}-EM$, $l_s=\text{centro}+EM$).
 
-> [!note] Práctico 8 — Chi-cuadrado
-> **Estadístico:** $\quad \chi^2_m=\sum\dfrac{(o_i-e_i)^2}{e_i}$ , unilateral derecha: $p\text{-}v=P(\chi^2>\chi^2_m)$
+> [!warning] Práctico 7 — Dos poblaciones ❌ (NADA en la hoja → memorizar)
+> - ❌ **t independientes:** primero Levene (varianzas) y Shapiro (normalidad). Si varianzas ≠ → Welch. *(En general te dan los datos → jamovi.)*
+> - ❌ **t apareadas:** definir $D=$ medida1 − medida2 ; $H_0:\mu_D=0$. *(También suele venir con datos → jamovi.)*
+> - ❌ **z diferencia de proporciones:** $z_m=\dfrac{\hat p_1-\hat p_2}{\sqrt{\bar p(1-\bar p)\left(\frac1{n_1}+\frac1{n_2}\right)}}$ , con $\bar p=\dfrac{x_1+x_2}{n_1+n_2}$ ; $H_0:p_1=p_2$. *(Jamovi: Recuento → independencia → "comparing proportions".)*
+
+> [!warning] Práctico 8 — Chi-cuadrado ❌ (NO está en la hoja → memorizar)
+> ❌ **Estadístico:** $\quad \chi^2_m=\sum\dfrac{(o_i-e_i)^2}{e_i}$ , unilateral derecha: $p\text{-}v=P(\chi^2>\chi^2_m)$
 > - **Bondad de ajuste:** $e_i=n\cdot p_i$ , gl $=c-1$.
 > - **Independencia / Homogeneidad:** $e_{ij}=\dfrac{\text{fila}_i\cdot\text{col}_j}{n}$ , gl $=(f-1)(c-1)$.
+> 💡 La más probable y la más corta: tenela fresca. Salida por jamovi: Recuento.
 
-> [!note] Práctico 9 — Regresión
-> **Recta:** $\hat y=a+bx$ , con $b=\dfrac{\sum xy-n\bar x\bar y}{\sum x^2-n\bar x^2}$ , $a=\bar y-b\bar x$
-> **Residuo:** $e=y-\hat y$
-> **Test de β:** $H_0:\beta=0$ vs $H_1:\beta\ne0$ ; $t_m=\dfrac{b}{S_b}$ , gl $=n-2$ , $pv=2\cdot P(t>|t_m|)$
-> **Correlación:** $r=\pm\sqrt{r^2}$ (signo de b) ; $|r|>0{,}7$ y $r^2>0{,}5$ → buen modelo.
+> [!warning] Práctico 9 — Regresión ❌ (NO está en la hoja → memorizar)
+> ❌ **Recta:** $\hat y=a+bx$ , con $b=\dfrac{\sum xy-n\bar x\bar y}{\sum x^2-n\bar x^2}$ , $a=\bar y-b\bar x$
+> ❌ **Residuo:** $e=y-\hat y$
+> ❌ **Test de β:** $H_0:\beta=0$ vs $H_1:\beta\ne0$ ; $t_m=\dfrac{b}{S_b}$ , gl $=n-2$ , $pv=2\cdot P(t>|t_m|)$
+> ❌ **Correlación:** $r=\pm\sqrt{r^2}$ (signo de b) ; $|r|>0{,}7$ y $r^2>0{,}5$ → buen modelo.
+> 💡 Salida por jamovi: Regresión → Linear Regression (te da $b$, $r^2$ y el p de β directo).
 
 ---
 

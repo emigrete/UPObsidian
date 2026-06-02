@@ -30,6 +30,14 @@ parcial: 2
 ## 🟦 Ejercicio 1 — Tiempo de soporte técnico
 > Soporte técnico: $n=16$, media $=4{,}12$, $s=1{,}31$. Se implementa la optimización **si el tiempo medio supera las 4 horas**. Tiempos ≈ normales.
 
+> [!question]- Cómo leí el enunciado (las 3 preguntas → árbol)
+> - **P1 ¿cuántos grupos?** Habla de **un solo** grupo (el tiempo de soporte) → rama *UNA población* (P6).
+> - **P2 ¿qué dato?** "Tiempo (horas)" es un número que se promedia → es una **media**.
+> - **¿σ o s?** Me dan $s=1{,}31$ (desvío muestral) ⇒ σ poblacional desconocido ⇒ la prueba es **t** (no z).
+> - **P3 ¿qué piden?** "se implementa **si el tiempo medio supera** las 4 horas" → decidir → prueba de hipótesis, y "supera" → $H_1$ con `>` → **unilateral derecha**.
+>
+> → **t de una muestra**, $\nu=n-1=15$.
+
 **Identifico:** una sola población, variable **cuantitativa** (tiempo), $\sigma$ **desconocido** y $n$ chico → **prueba t de una muestra** ($\nu=n-1=15$). Ver [[01 - Práctico 6 - Inferencia para una población|P6]].
 
 ### a) Hipótesis y decisión si no se rechaza $H_0$
@@ -57,6 +65,14 @@ $$H_0:\ \mu\le 4 \qquad H_1:\ \mu>4$$
 ## 🟩 Ejercicio 2 — Supermercado: sistema nuevo (A) vs tradicional (B)
 > Tiempos en caja de clientes de la sucursal **A** (sistema nuevo) y **B** (tradicional), dos muestras de clientes **distintos**. Tiempos ≈ normales.
 
+> [!question]- Cómo leí el enunciado
+> - **P1 ¿cuántos grupos?** Dos sucursales, A y B → rama *DOS poblaciones* (P7).
+> - **Sub-decisión clave:** los clientes de A son **distintos** de los de B (no es el mismo cliente medido en los dos sistemas) → **independientes**, NO apareadas.
+> - **P2 ¿qué dato?** Comparo **medias** de una variable cuantitativa (tiempo en caja) → familia **t**.
+> - **Paso previo:** al ser independientes, antes de la t va **Levene** para decidir Student vs Welch.
+> - **Cola:** "se instala si el nuevo **mejora/reduce** el tiempo" → unilateral.
+> - El inciso d) es **aparte**: ahí cambia a un **porcentaje** → otra rama (z proporción).
+
 ### a) ¿Qué test corresponde? (justificar)
 **Prueba t para muestras INDEPENDIENTES.** Justificación:
 - Comparo **medias** de una variable **cuantitativa** (tiempo en caja).
@@ -82,6 +98,12 @@ $$pv = P(T_{10}>1{,}47)\approx 0{,}087$$
 > El p-valor (≈0,087) **cae entre 0,05 y 0,10**. Con $\alpha=0{,}10$ se rechaza, pero **con $\alpha=0{,}05$ NO se rechazaría** ($0{,}087>0{,}05$). La conclusión depende del riesgo que se fije.
 
 ### d) ¿Aumentó el % de clientes conformes? ($n=150$, $64\%$, histórico $62\%$, $\alpha=0{,}05$)
+
+> [!question]- Cómo leí el enunciado (cambió la rama respecto de a/b/c)
+> - **P2 ¿qué dato?** Acá ya no es un tiempo: es un **porcentaje de clientes conformes (64%)** → es una **proporción** → rama *UNA población → z para proporción* (P6).
+> - Es **un solo** grupo comparado contra un valor histórico (62%), no dos grupos → no es diferencia de proporciones.
+> - **Cola:** "¿**aumentó** respecto del 62%?" → $H_1$ con `>` → unilateral derecha. La hipótesis se arma con el valor afirmado **0,62** (no con el muestral 0,64).
+
 **Identifico:** una **proporción** → **prueba z para una proporción** (a mano, no jamovi-t).
 
 "¿aumentó respecto del 62%?" → cola derecha:
@@ -97,6 +119,12 @@ $$pv = P(Z>0{,}505)\approx 0{,}307$$
 
 ## 🟧 Ejercicio 3 — Formación académica vs rendimiento laboral (V/F)
 > Una muestra de trabajadores, dos variables categóricas: **formación** (Media / Terciario / Universitario / Posgrado, 4 categorías) y **rendimiento** (Muy bueno / Bueno / Regular, 3 categorías). Pregunta: ¿están relacionadas? → tabla **4×3**. Ver [[03 - Práctico 8 - Datos categóricos (Chi cuadrado)|P8]].
+
+> [!question]- Cómo leí el enunciado
+> - **P2 ¿qué dato?** Dos variables **categóricas** (formación y rendimiento) con **conteos** en una tabla → rama χ² (P8).
+> - **¿Cuál χ²?** Es **una sola muestra** medida en **dos variables** que quiero ver si se relacionan → **χ² de independencia** (no bondad de ajuste, que sería una variable contra porcentajes fijos).
+> - **gl:** tabla 4×3 → $\nu=(4-1)(3-1)=6$.
+> - **Cola:** χ² siempre **unilateral derecha** (esto es justo lo que prueba el inciso b).
 
 ### a) "Se debe realizar un PH de independencia para datos categóricos" → **VERDADERO** ✅
 Es **una sola muestra** medida en **dos variables categóricas** y se pregunta si **una depende de la otra** → ése es exactamente el escenario de la **prueba χ² de independencia**. Estadístico $\chi^2_m=\sum\dfrac{(o_i-e_i)^2}{e_i}$, con $\nu=(4-1)(3-1)=6$ grados de libertad.
@@ -117,6 +145,11 @@ $$pv=P(\chi^2>\chi^2_m)$$
 
 ## 🟥 Ejercicio 4 — Chatbot: conocimiento técnico vs tiempo de resolución
 > Regresión con $n=12$: $\ \hat y = 12{,}86 - 1{,}29\,x\ $, con $r^2=0{,}789$. Variables: **x = nivel de conocimiento técnico (1 a 5)**, **y = tiempo de resolución**. Ver [[04 - Práctico 9 - Regresión y correlación|P9]].
+
+> [!question]- Cómo leí el enunciado
+> - **P1/P2:** dos variables cuantitativas ($x=$ conocimiento, $y=$ tiempo) con una **recta** dada → rama *regresión* (P9).
+> - **Pendiente negativa** ($b=-1{,}29$) → la correlación será **negativa**: $r=-\sqrt{r^2}$.
+> - **Qué pide cada inciso:** a) interpretar $a$ y $b$; b) leer $r^2$ como % explicado; c) PH para $\beta$ ($H_0:\beta=0$). Como no dan $S_b$, el estadístico se saca desde $r$ con $t_m=\frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$.
 
 ### a) Interpretar los coeficientes
 - **Ordenada $a=12{,}86$:** tiempo medio estimado para un usuario con conocimiento $x=0$. Pero la escala va de **1 a 5**, así que $x=0$ está **fuera del rango** y **no tiene interpretación práctica** (no existe un nivel de conocimiento 0).

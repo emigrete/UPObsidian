@@ -136,6 +136,7 @@ Siempre los mismos pasos (sirve para TODOS los prácticos 6 a 8):
 
 ## 📂 Notas del parcial
 
+- [[09 - Explicado de CERO (teoría + jamovi paso a paso)]] 🐣 — **empezá por acá si no entendés nada**: la teoría en criollo (μ, p-valor, α) + jamovi clic por clic
 - [[Hoja de Resumen - 2do Parcial]] 🏆 — **chuleta integral**: fórmulas permitidas + cómo se hace + ejercicios integradores (todo en una página)
 - [[01 - Práctico 6 - Inferencia para una población]]
 - [[02 - Práctico 7 - Comparación de dos muestras]]
@@ -146,3 +147,7 @@ Siempre los mismos pasos (sirve para TODOS los prácticos 6 a 8):
 - [[07 - Ejercicios de repaso resueltos]] 📝 — la ejercitación de repaso del parcial resuelta y explicada
 - [[08 - Parciales ejemplo resueltos (oficial)]] 🧪 — los **2 parciales ejemplo de la cátedra** resueltos paso a paso y verificados contra las respuestas oficiales
 - [[Preguntas Integradoras - Probabilidad (2do Parcial)]] ❓ — preguntas estilo parcial (teoría + aplicadas) con respuestas plegadas
+- [[11 - Drill - Identificar la prueba (solo enunciados)]] 🎯 — **20 enunciados con formas variadas y trampas**: solo identificar qué prueba es (con las 3 preguntas) y la respuesta en desplegable
+- [[12 - Glosario de letras y símbolos]] 🔠 — **qué significa cada letra** (μ, σ, p̂, α, β, r…) y cuáles cambian de significado según el contexto (la β: error tipo II vs pendiente)
+- [[14 - Cómo calcular el estadístico (tm y zm) a mano]] 🧮 — **las 5 fórmulas del tm/zm** + por qué la cola NO cambia el estadístico + ejemplo de apareadas resuelto a mano paso a paso
+- [[13 - Mi plan final + trampas (repaso pre-parcial)]] 🎯 — **diagnóstico + mis 3 trampas + plan del lunes y checklist del martes** (parcial 02/06)
